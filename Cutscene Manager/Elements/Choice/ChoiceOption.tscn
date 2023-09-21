@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Cutscene Manager/Elements/Choice/ChoiceOption.gd" type="Script" id=2]
+[ext_resource path="res://Cutscene Manager/Elements/SpeechBubble/Speechbubble_font.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[node name="Button" type="Button"]
+margin_right = 81.0
+margin_bottom = 21.0
+custom_colors/font_color_disabled = Color( 0.184314, 0.184314, 0.180392, 1 )
+custom_colors/font_color_focus = Color( 0.184314, 0.184314, 0.180392, 1 )
+custom_colors/font_color = Color( 0.184314, 0.184314, 0.180392, 1 )
+custom_colors/font_color_hover = Color( 0.184314, 0.184314, 0.180392, 1 )
+custom_colors/font_color_pressed = Color( 0.184314, 0.184314, 0.180392, 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+text = "test"
+script = ExtResource( 2 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_Button_pressed"]

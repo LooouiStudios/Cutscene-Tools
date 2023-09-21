@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/font/Pixellari.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/UI/speech_bubble.png" type="Texture" id=2]
+[ext_resource path="res://Cutscene Manager/Elements/SpeechBubble/Speechbubble.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "appear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.18, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "dissappear"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.18, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+
+[node name="Speechbubble" type="Position2D"]
+z_index = 10
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = -13.0
+margin_right = 82.0
+margin_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 20, 5 )
+custom_colors/font_color = Color( 0.184314, 0.184314, 0.180392, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "test"
+autowrap = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Label"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 5.0
+texture = ExtResource( 2 )
+patch_margin_left = 7
+patch_margin_top = 6
+patch_margin_right = 5
+patch_margin_bottom = 6
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/appear = SubResource( 1 )
+anims/dissappear = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
